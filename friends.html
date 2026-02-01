@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends - Vibe Music</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="app-page">
+    <div class="app-layout">
+        <!-- NAVIGATION SIDEBAR -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>🎵 Vibe</h2>
+                <p class="current-user" id="currentUser">Sarah</p>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="discover.html" class="nav-link">🎵 Discover</a></li>
+                <li><a href="friends.html" class="nav-link active">👥 Friends</a></li>
+                <li><a href="notifications.html" class="nav-link">🔔 Notifications</a></li>
+                <li><a href="index.html" class="nav-link logout-btn">🚪 Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- TABS -->
+            <div class="friends-tabs">
+                <button class="tab-btn active" data-tab="my-friends">My Friends</button>
+                <button class="tab-btn" data-tab="find-friends">Find Friends</button>
+                <button class="tab-btn" data-tab="requests">Friend Requests</button>
+            </div>
+
+            <!-- MY FRIENDS TAB -->
+            <div id="my-friends" class="tab-content active">
+                <h2>Your Friends</h2>
+                <div class="friends-list" id="friendsList">
+                    <!-- Friends will be loaded here -->
+                </div>
+            </div>
+
+            <!-- FIND FRIENDS TAB -->
+            <div id="find-friends" class="tab-content">
+                <h2>Find Friends</h2>
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="searchFriends" 
+                        placeholder="Search by name or email..."
+                    >
+                </div>
+                <div class="users-list" id="usersList">
+                    <!-- Users will be loaded here -->
+                </div>
+            </div>
+
+            <!-- FRIEND REQUESTS TAB -->
+            <div id="requests" class="tab-content">
+                <h2>Friend Requests</h2>
+                <div class="requests-list" id="requestsList">
+                    <!-- Requests will be loaded here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- FRIEND CARD TEMPLATE -->
+    <template id="friendCardTemplate">
+        <div class="friend-card">
+            <div class="friend-info">
+                <h3 class="friend-name"></h3>
+                <p class="friend-mood"></p>
+            </div>
+            <div class="friend-stats">
+                <span class="mutual-likes">Shared likes: <strong></strong></span>
+            </div>
+            <button class="btn btn-secondary remove-friend">Remove Friend</button>
+        </div>
+    </template>
+
+    <!-- USER CARD TEMPLATE (for finding friends) -->
+    <template id="userCardTemplate">
+        <div class="user-card">
+            <div class="user-info">
+                <h3 class="user-name"></h3>
+                <p class="user-mood"></p>
+            </div>
+            <button class="btn btn-primary add-friend">Add Friend</button>
+        </div>
+    </template>
+
+    <!-- FRIEND REQUEST TEMPLATE -->
+    <template id="requestCardTemplate">
+        <div class="request-card">
+            <div class="request-info">
+                <h3 class="requester-name"></h3>
+                <p class="request-time"></p>
+            </div>
+            <div class="request-actions">
+                <button class="btn btn-primary accept-request">Accept</button>
+                <button class="btn btn-secondary decline-request">Decline</button>
+            </div>
+        </div>
+    </template>
+
+    <script src="app.js"></script>
+    <script src="friends-logic.js"></script>
+</body>
+</html>

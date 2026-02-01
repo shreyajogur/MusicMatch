@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Vibe Music</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="app-page">
+    <div class="app-layout">
+        <!-- NAVIGATION SIDEBAR -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>🎵 Vibe</h2>
+                <p class="current-user" id="currentUser">Sarah</p>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="discover.html" class="nav-link">🎵 Discover</a></li>
+                <li><a href="friends.html" class="nav-link">👥 Friends</a></li>
+                <li><a href="notifications.html" class="nav-link active">🔔 Notifications</a></li>
+                <li><a href="index.html" class="nav-link logout-btn">🚪 Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <div class="notifications-header">
+                <h1>Notifications</h1>
+                <button id="markAllRead" class="btn btn-secondary">Mark All as Read</button>
+            </div>
+
+            <!-- NOTIFICATION TYPES FILTER -->
+            <div class="notification-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="mutual_like">Shared Tastes</button>
+                <button class="filter-btn" data-filter="friend_added">Friends</button>
+            </div>
+
+            <!-- NOTIFICATIONS LIST -->
+            <div class="notifications-list" id="notificationsList">
+                <!-- Notifications will be loaded here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- NOTIFICATION ITEM TEMPLATE -->
+    <template id="notificationTemplate">
+        <div class="notification-item">
+            <div class="notification-icon"></div>
+            <div class="notification-content">
+                <h3 class="notification-title"></h3>
+                <p class="notification-message"></p>
+                <span class="notification-time"></span>
+            </div>
+            <div class="notification-actions">
+                <button class="btn-remove" data-action="remove">✕</button>
+            </div>
+        </div>
+    </template>
+
+    <script src="app.js"></script>
+    <script src="notifications-logic.js"></script>
+</body>
+</html>

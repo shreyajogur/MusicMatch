@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Songs - Vibe Music</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="app-page">
+    <div class="app-layout">
+        <!-- NAVIGATION SIDEBAR -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>🎵 Vibe</h2>
+                <p class="current-user" id="currentUser">Sarah</p>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="discover.html" class="nav-link active">🎵 Discover</a></li>
+                <li><a href="friends.html" class="nav-link">👥 Friends</a></li>
+                <li><a href="notifications.html" class="nav-link">🔔 Notifications</a></li>
+                <li><a href="index.html" class="nav-link logout-btn">🚪 Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- HEADER WITH FILTERS -->
+            <div class="discover-header">
+                <h1>Discover Songs</h1>
+                <div class="filter-controls">
+                    <select id="moodFilter">
+                        <option value="">All Moods</option>
+                        <option value="chill">Chill</option>
+                        <option value="energetic">Energetic</option>
+                        <option value="melancholic">Melancholic</option>
+                        <option value="happy">Happy</option>
+                        <option value="focused">Focused</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- SONGS FEED -->
+            <div class="songs-container" id="songsContainer">
+                <!-- Songs will be loaded here by JavaScript -->
+            </div>
+        </main>
+    </div>
+
+    <!-- SONG CARD TEMPLATE (for reference) -->
+    <template id="songCardTemplate">
+        <div class="song-card">
+            <div class="song-header">
+                <div class="song-info">
+                    <h3 class="song-title"></h3>
+                    <p class="song-artist"></p>
+                </div>
+                <div class="song-year"></div>
+            </div>
+
+            <div class="song-moods"></div>
+
+            <div class="song-actions">
+                <button class="btn-like" data-action="like">
+                    ❤️ Like
+                </button>
+                <button class="btn-dislike" data-action="dislike">
+                    ❌ Dislike
+                </button>
+            </div>
+
+            <div class="song-status"></div>
+        </div>
+    </template>
+
+    <script src="app.js"></script>
+    <script src="discover-logic.js"></script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Music Discovery - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="logo-section">
+            <h1>🎵 Vibe Music</h1>
+            <p>Discover. Like. Connect. Share.</p>
+        </div>
+
+        <div class="auth-card">
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">Login</button>
+                <button class="tab-btn" data-tab="signup">Sign Up</button>
+            </div>
+
+            <!-- LOGIN TAB -->
+            <div id="login" class="tab-content active">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input 
+                            type="email" 
+                            id="loginEmail" 
+                            placeholder="you@example.com" 
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input 
+                            type="password" 
+                            id="loginPassword" 
+                            placeholder="Enter your password" 
+                            required
+                        >
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+
+            <!-- SIGNUP TAB -->
+            <div id="signup" class="tab-content">
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input 
+                            type="text" 
+                            id="signupName" 
+                            placeholder="Your name" 
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input 
+                            type="email" 
+                            id="signupEmail" 
+                            placeholder="you@example.com" 
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input 
+                            type="password" 
+                            id="signupPassword" 
+                            placeholder="Create a password" 
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="signupMood">Your Vibe Preference</label>
+                        <select id="signupMood" required>
+                            <option value="">Select your mood</option>
+                            <option value="chill">Chill & Relaxed</option>
+                            <option value="energetic">Energetic & Upbeat</option>
+                            <option value="melancholic">Melancholic & Deep</option>
+                            <option value="happy">Happy & Feel-Good</option>
+                            <option value="focused">Focused & Productive</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="auth-footer">
+            <p>🎧 Connect with friends. Discover your next favorite song.</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // ========================================
+        // LOGIN & SIGNUP LOGIC
+        // ========================================
+        // Plain English: Handle user authentication
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is already logged in
+            if (app.currentUser) {
+                // Redirect to discover page
+                window.location.href = 'discover.html';
+                return;
+            }
+
+            setupAuthTabs();
+            setupLoginForm();
+            setupSignupForm();
+        });
+
+        // Plain English: Switch between login and signup tabs
+        function setupAuthTabs() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Get which tab to show
+                    const tabName = this.dataset.tab;
+
+                    // Hide all tabs and remove active classes
+                    document.querySelectorAll('.tab-content').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+
+                    // Show selected tab and mark button as active
+                    document.getElementById(tabName).classList.add('active');
+                    this.classList.add('active');
+                });
+            });
+        }
+
+        // Plain English: Handle login form submission
+        function setupLoginForm() {
+            const loginForm = document.getElementById('loginForm');
+
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Don't refresh page
+
+                // Get form inputs
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+
+                // Try to login
+                const result = app.login(email, password);
+
+                if (result.success) {
+                    // Login successful! Go to discover page
+                    window.location.href = 'discover.html';
+                } else {
+                    // Show error message
+                    alert(result.message);
+                }
+            });
+        }
+
+        // Plain English: Handle signup form submission
+        function setupSignupForm() {
+            const signupForm = document.getElementById('signupForm');
+
+            signupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Get form inputs
+                const name = document.getElementById('signupName').value;
+                const email = document.getElementById('signupEmail').value;
+                const password = document.getElementById('signupPassword').value;
+                const moodPreference = document.getElementById('signupMood').value;
+
+                // Try to create account
+                const result = app.signup(name, email, password, moodPreference);
+
+                if (result.success) {
+                    // Account created! Go to discover page
+                    window.location.href = 'discover.html';
+                } else {
+                    // Show error message
+                    alert(result.message);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
